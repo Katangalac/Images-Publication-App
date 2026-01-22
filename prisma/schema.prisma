@@ -1,0 +1,62 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider      = "prisma-client-js"
+  binaryTargets = ["native", "debian-openssl-3.0.x"]
+}
+
+datasource db {
+  provider     = "postgresql"
+  url          = env("DATABASE_URL")
+  // Do not use foreign keys (PlanetScale does not support them)
+  relationMode = "prisma"
+}
+
+model Post {
+  id        Int      @id @default(autoincrement())
+  name      String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([name])
+}
+
+// Modèle représentant une image téléversée par l'utilisateur
+model Image {
+  id          Int        @id @default(autoincrement())
+  description String
+  hashtags    String
+  mentionUser String?
+  imageUuid   String // l'id de l'image
+  fileName    String?
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+  userId      String
+  likes       Reaction[]
+  comments    Comment[]
+}
+
+// Modèle pour le like d'une image
+model Reaction {
+  id           Int      @id @default(autoincrement())
+  imageId      Int
+  userId       String
+  reactionType String // 'like' ou 'dislike'
+  createdAt    DateTime @default(now())
+  image        Image    @relation(fields: [imageId], references: [id])
+
+  @@unique([imageId, userId])
+}
+
+model Comment {
+  id           Int      @id @default(autoincrement())
+  content      String
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  userId       String // Identifiant unique de l'utilisateur fourni par Clerk
+  userName     String?
+  userImageUrl String?
+  imageId      Int
+  image        Image    @relation(fields: [imageId], references: [id])
+}

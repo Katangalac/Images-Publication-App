@@ -1,0 +1,44 @@
+#name: CI
+#
+#on:
+#  push:
+#    branches:
+#      - main
+#  pull_request:
+#    branches:
+#      - main
+#
+#env:
+#  DATABASE_URL: "https://fake.com"
+#
+#jobs:
+#  build:
+#    runs-on: ubuntu-latest
+#    steps:
+#    - uses: actions/checkout@v2
+#
+#    - name: Utiliser Node.js
+#      uses: actions/setup-node@v2
+#      with:
+#        node-version: '20.11.0'
+#
+#    - name: Installer les dépendances
+#      run: npm install
+#
+#    - name: Vérification des types TypeScript
+#      run: npm run type-check
+#
+#    - name: Linting
+#      run: npm run lint
+#
+#    - name: Build de l'application
+#      run: npm run build
+#
+#    - name: Déploiement sur l'environnement de production
+#      run: |
+#        # Exemple de déploiement sur un service de cloud comme Vercel
+#        npm install -g vercel
+#        vercel --token $VERCEL_TOKEN --prod # Assurez-vous de définir la variable d'environnement VERCEL_TOKEN dans les secrets de votre repository
+#      env:
+#        VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+#        DATABASE_URL: ${{ env.DATABASE_URL }}

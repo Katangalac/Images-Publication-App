@@ -1,0 +1,30 @@
+#name: CI
+#
+#on:
+#  push:
+#    branches:
+#      - main
+#  pull_request:
+#    branches:
+#      - main
+#env:
+#  DATABASE_URL: "https://fake.com"
+#jobs:
+#  build:
+#
+#    runs-on: ubuntu-latest
+#
+#    steps:
+#    - uses: actions/checkout@v2
+#
+#    - name: Utiliser Node.js
+#      uses: actions/setup-node@v2
+#
+#    - name: Installer les dépendances
+#      run: npm install
+#
+#    - name: Vérification des types TypeScript
+#      run: npm run type-check
+#
+#    - name: Linting
+#      run: npm run lint

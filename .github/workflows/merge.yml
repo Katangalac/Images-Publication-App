@@ -1,0 +1,15 @@
+#name: Merge Pull Request on CI success
+#
+#on:
+#  status: # Déclenche l'action lorsqu'un statut est mis à jour
+#    types: [success] # Déclenche l'action uniquement en cas de succès du statut
+#
+#jobs:
+#  merge:
+#    runs-on: ubuntu-latest
+#
+#    steps:
+#      - name: Merge Pull Request
+#        uses: pullreminders/merge@v0.11.2
+#        with:
+#          github_token: ${{ secrets.GITHUBTOKEN }}
