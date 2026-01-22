@@ -32,6 +32,8 @@ This project focuses on authentication, performance, and modern web development 
 
 - ORM: Prisma
 
+- Images storage : Uploadcare
+
 - Authentication: Clerk
 
 - DevOps: Docker, CI/CD
